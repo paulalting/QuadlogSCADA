@@ -1,7 +1,7 @@
 # QuadlogSCADA
 SCADA system for GNU/Linux with Modbus communications and with inbuilt HTTP server
 
-## This document is very much in draft form and will be updated as progress on QuadlogSACAD is made: 15 Feb 2015
+### This document is very much in draft form and will be updated as progress on QuadlogSACAD is made: 15 Feb 2015
 
 ## Overview:
 QuadlogSCADA is in many respects a functional SCADA system in that it performs Supervisory Control function for processes as well as Data Acquisition from process equipment.
@@ -32,4 +32,4 @@ It is suited for non critical and non life threatening control. It is not design
 * add in alarm action logic
 * add in email handler
 * add in more statisical options
-* 
+
