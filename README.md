@@ -2,7 +2,7 @@
 SCADA system with inbuilt HTTP web server and Modbus protocol communications.
 
 ##News:
-Friday 29 May 2015: Application files expect to be pushed to GitHub beginning of June.  
+Friday 29 May 2015: source files expect to be pushed to GitHub in June.  
 
 ##Overview:
 QuadlogSCADA is in many respects a functional SCADA system in that, when properly configured, is able to perform Supervisory Control function for processes as well as Data Acquisition from connected process equipment.
@@ -53,11 +53,13 @@ QuadlogSCADA
 
 ##Todo List:
 * add in framework for user process tasks
-* add in alarm action logic
+* review and expand general logging of system runntime
 * add in email handler
+* add in alarm action logic for email handler
 * review adding more statistical options
+* review and expand HTTP API for object based requests
 
--------------
+---
 
 ##Installation:
 Installation of QuadlogSCADA in not a trivial task, and requires installing a number of additional components to prepare a system.  
@@ -69,26 +71,27 @@ The first prerequisite is that you already have a system that is setup with a wo
 Next, ensure your system has the necessary tools to build the required libraries needed by QuadlogSCADA.  
 The tools required are 'build essentials', 'automake' and 'libtool'.
 
-Install build essential tools:
+Install build essential tools:  
+`$ sudo apt-get install build-essential`  
 
->	`$ sudo apt-get install build-essential`  
-
-Next, install automake and libtool:
-
->	`$ sudo apt-get install automake`  
->	`$ sudo apt-get install libtool`
+Next, install automake and libtool:  
+`$ sudo apt-get install automake`  
+`$ sudo apt-get install libtool`
 
 Next install the first of the helper libraries, ncurses development files:
 
 Ncurses is a toolkit for developing "GUI-like" application software that runs under a terminal emulator and is installed as part of the Debian distribution.  
 To use it in QuadlogSCADA, you also need the header files which is supplied by the libncurses5-dev package.
 
-To install:
-
->	`$ sudo apt-get install libncurses5-dev`
+To install:  
+`$ sudo apt-get install libncurses5-dev`
 
 Next the three main libraries used by QuadlogSCADA need to be installed.  
 Progress through the following steps to download, configure and install.
+On completion, check the following libraries are available in the following directories;  
+`/usr/include`  
+`/usr/local/include`  
+
 
 ####Modbus:
 Tested Version: 3.1.1  
@@ -96,27 +99,22 @@ Download Modbus library from:<http://libmodbus.org/>
 GitHub site: <https://github.com/stephane/libmodbus>  
 Save the library to directory $HOME/dev/libraries
 
-Then:
+Then:  
+`$ tar -xf libmodbus-3.1.1.tar.gz`
 
->	`$ tar -xf libmodbus-3.1.1.tar.gz`
+Go into the new directory libmodbus-3.1.1 and  
+`$ ./configure`
 
-Go into the new directory libmodbus-3.1.1 and
+On the chance there is no configure script then generate one by running:  
+`$ ./autogen.sh.`
 
->	`$ ./configure`
-
-On the chance there is no configure script then generate one by running:
-
->	`$ ./autogen.sh.`
-
-If the autogen.sh file is not set as executable, then tell it by:
-
->	`$ sh ./autogen.sh`
+If the autogen.sh file is not set as executable, then tell it by:  
+`$ sh ./autogen.sh`
 
 This should complete with a message saying you can now run `./configure`
 
-Execute
-
->	`$ ./configure`
+Execute  
+`$ ./configure`
 
 should result in a tail message similar to:
 
@@ -131,27 +129,22 @@ should result in a tail message similar to:
         ldflags:                
 
 After running `./configure` you need to make and then install.
-So first:
+So first:  
+`$ make`
 
->	`$ make`
-
-Then if we use default configure file locations of /usr/... then se need to use sudo to write.
-
->	`$ sudo make install`  
-
+Then if we use default configure file locations of /usr/... then se need to use sudo to write.  
+`$ sudo make install`  
 
 ####libmicrohttpd:
 Tested version: 0.9.34  
 Download libmicrohttpd library from site: <https://www.gnu.org/software/libmicrohttpd/>  
 Save the library to directory $HOME/dev/libraries
 
-Then
+Then  
+`$ tar -xf libmicrohttpd-0.9.34.tar.gz`
 
->	`$ tar -xf libmicrohttpd-0.9.34.tar.gz`
-
-Go into the new directory libmicrohttpd-0.9.34 and
-
->	`$ ./configure`
+Go into the new directory libmicrohttpd-0.9.34 and  
+`$ ./configure`
 
 Result should be:
 
@@ -171,13 +164,11 @@ Result should be:
         configure:
         License:           LGPL or eCos
 
-Then to make:
+Then to make:  
+`$ make`
 
->	`$ make`
-
-To install:
-
->	`$ sudo make install`
+To install:  
+`$ sudo make install`
 
 Result of make install:
 	Libraries have been installed in:
@@ -193,45 +184,39 @@ flag during linking and do at least one of the following:
    - have your system administrator add LIBDIR to `/etc/ld.so.conf'
 
 See any operating system documentation about shared libraries for
-more information, such as the ld(1) and ld.so(8) manual pages.
-_____________________________________________________________________________________
+more information, such as the ld(1) and ld.so(8) manual pages.  
+
 
 ####SQLite3:
 Tested version: 3.8.8.3  
 SQLite site for more info SQLite database engine: <https://www.sqlite.org>  
 Set location to $HOME/dev/libraries
 
-Get the file from:
+Get the file:  
+`$ wget http://www.sqlite.org/2015/sqlite-autoconf-3080803.tar.gz`
 
->	`$ wget http://www.sqlite.org/2015/sqlite-autoconf-3080803.tar.gz`
+To unpack:  
+`$ tar -xf sqlite-autoconf-3080803.tar.gz`
 
-To unpack:
-
->	`$ tar -xf sqlite-autoconf-3080803.tar.gz`
-
-To build and install as system shared library:
-
->	`$ cd sqlite-autoconf-3080803`  
-	`$ ./configure`  
-	`$ make`  
-	`$ sudo make install`
+To build and install as system shared library:  
+`$ cd sqlite-autoconf-3080803`  
+`$ ./configure`  
+`$ make`  
+`$ sudo make install`
 
 To install as a source for inclusion into a project:
 
-First install unzip if not already installed:
+First install unzip if not already installed:  
+`$ sudo apt-get install unzip`
 
->	`$ sudo apt-get install unzip`
+Get the file from:  
+`$ wget http://www.sqlite.org/2015/sqlite-amalgamation-3080803.zip`
 
-Get the file from:
-
->	`$ wget http://www.sqlite.org/2015/sqlite-amalgamation-3080803.zip`
-
-To unzip:
-
->	`$ unzip sqlite-amalgamation-3080803.zip -d sqlite-3.8.8.3`
+To unzip:  
+`$ unzip sqlite-amalgamation-3080803.zip -d sqlite-3.8.8.3`
 
 This will provide files needed for inclusion into the source code for Quadlog.
-Contents of ~/dev/libraries/sqlite-amalgamation-3080803/
+Contents of $HOME/dev/libraries/sqlite-amalgamation-3080803/
 
 >	shell.c  
 >	sqlite3.c  
@@ -240,23 +225,16 @@ Contents of ~/dev/libraries/sqlite-amalgamation-3080803/
 
 ---
 
-Following compilation, check the above libraries are available in the following directories;  
-`/usr/include`  
-`/usr/local/include`  
----
-_____________________________________________________________________________________
+##Compile QuadlogSCADA:
 
-Compile QuadlogSCADA:
+To compile the source code of QuadlogSCADA, ensure all source files exist and are the latest.
+All source files reside in the parent directory HOME/dev/quadlog.
 
-To compile the source code of Quadlog, make sure all source files exist and are the latest.
-All source files reside in the directory HOME/dev/quadlog.
-
-Go into this directory to compile.
-	$ make clean
-	$ make
+Go into this directory to compile.  
+`$ make clean`  
+`$ make`  
 
 
----
 >	Fin du document pour installation de QuadlogSCADA
 
 ---
