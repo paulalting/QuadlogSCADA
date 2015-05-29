@@ -15,25 +15,26 @@ Systems can be based on Intel 32/64 bit or ARM CPUs, with the ARM platform appea
 
 QuadlogSCADA communicates to connected devices using the standard industrial Modbus communication protocol, with connections made via Ethernet TCP mode or by RTU mode, allowing for many forms of asynchronous serial communications such as RS-232, EIA-485, async TTL and USB. Multiple devices can be connected using any combination of communications ports.
 
-An inbuilt HTTP server allows a remote computer to view devices for displaying real-time data, alter setpoints, view history charts as well as and alarm conditions.  
-The user interface may be built in any language supporting HTTP protocol, but typically a standard javascript web application would be used.  
+An inbuilt HTTP server allows a remote computer to view devices for displaying real-time data, alter setpoints, view history charts as well as and alarm conditions.
+The user interface may be built in any language supporting HTTP protocol, but typically a standard javascript web application would be used.
 The style and complexity of the user interface GUI can be as simple or complex as required by the application.
-For a simple interface, it might just be a matter of a HTML page with some embedded css and javascript to present the required data.  
-Alternatively, for complex systems, a full web application using full javascript with framework and helper libraries can be used to present clever and effective real-time data visualisation screens.
+For a simple interface, it might just be a matter of a HTML page with some embedded css and javascript to present the required data.
+Alternatively, for complex systems, a full web application using full javascript with framework and helper libraries can be used to present 
+clever and effective real-time data visualisation screens.
+
+This aspect of user GUI is left up to the user to create and develop in the way best suited for the needs of the application.
+QuadlogSCADA provides the centralised hub for connection to devices and gathering and making the data available to the user GUI.
 
 It should be pointed out here, that QuadlogSCADA does not rely on what many traditional server technologies use, being the LAMP/WAMP component stack.  
 No use is made of Apaché or PHP or MySQL. These components are fine for typical web pages, where speed and resources are not a consideration.
-Take for example, a user with a small RPi system, wanting to develop a home automation system. By the time the resource hungry Apaché, MySQL and PHP are installed, the poor RPi has very little else in terms of memory resource to be effective at its main task. Further, traditional systems using Apaché, MySQL and PHP are not at all well suited for as close to real-time data processing as needed by SCADA systems demand. Add to that, the connectivity to external devices is difficult and tricky, with data flow from device through to to user a convoluted and twisted path. 
+Take for example, a user with a small RPi system, wanting to develop a home automation system. By the time the resource hungry Apaché, MySQL and PHP are installed, the poor RPi has very little else in terms of memory resource to be effective at its main task. Further, traditional systems using Apaché, MySQL and PHP are not at all well suited for as close to real-time data processing as needed by SCADA systems demand. Add to that, the connectivity to external devices is difficult and tricky, with data flow from device through to to user a convoluted and twisted path.
 
 Instead, Quadlog is a tightly integrated application that effectively and efficiently processes and handles data from device through short term or long term storage through to user interface GUI. The application initiates and maintains communications with all configured and connected I/O devices to either get or set their data. The data received is checked for alarm conditions and may also be logged to long term storage in a SQLite database. The inbuilt HTTP server is started and run as a daemon, passing HTTP requests back into the main application for direct processing and response.
 
 Being a highly integrated application, QuadlogSCADA is lightweight in terms of system memory and other resources as well as being highly responsive in terms of actual data processing.
 
-This aspect of user GUI is left up to the user to create and develop in the way best suited for the needs of the application.
-QuadlogSCADA provides the centralised hub for connection to devices and gathering and making the data available to the user GUI.
-
-QuadlogSCADA is aimed initially for renewable energy systems, small building automation and for small process automation.  
-It is suited for non critical and non life threatening control. It is not designed for or to be used in critical or safety systems.  
+QuadlogSCADA is aimed initially for connecting into and monitoring renewable energy systems, small building automation and for small process automation.
+It is suited for non critical and non life threatening control. It is not designed for or to be used in critical or safety systems.
 Such systems must be designed to use dedicated safety control equipment such as accredited PLC's.
 
 ##Feature Points:
@@ -47,7 +48,7 @@ QuadlogSCADA
 * scans device tags to maintain basic statistics.
 * scans device tags to maintain history log for charting.
 * SQLite3 used to store all configuration data as well as logged data.
-* operates in a terminal screen as simple text mode GUI using Ncurses library.
+* operates in a terminal screen with simple text mode GUI to display system status.
 * communications with devices operate in their own process threads.
 * built in memory based IO device for HTTP access to other data, such as totalisers and counters.
 
@@ -59,7 +60,6 @@ QuadlogSCADA
 * review adding more statistical options
 * review and expand HTTP API for object based requests
 
----
 
 ##Installation:
 Installation of QuadlogSCADA in not a trivial task, and requires installing a number of additional components to prepare a system.  
@@ -116,7 +116,7 @@ This should complete with a message saying you can now run `./configure`
 Execute  
 `$ ./configure`
 
-should result in a tail message similar to:
+This should result in a message tail similar to:
 
         libmodbus 3.1.1
         ===============
@@ -128,11 +128,10 @@ should result in a tail message similar to:
         cflags:                 -g -O2
         ldflags:                
 
-After running `./configure` you need to make and then install.
-So first:  
+Then to make:  
 `$ make`
 
-Then if we use default configure file locations of /usr/... then se need to use sudo to write.  
+To install:  
 `$ sudo make install`  
 
 ####libmicrohttpd:
@@ -146,7 +145,7 @@ Then
 Go into the new directory libmicrohttpd-0.9.34 and  
 `$ ./configure`
 
-Result should be:
+This should result in a message similar to:
 
         configure:          Configuration Summary:
         Operating System:  linux-gnueabihf
@@ -170,23 +169,6 @@ Then to make:
 To install:  
 `$ sudo make install`
 
-Result of make install:
-	Libraries have been installed in:
-	   /usr/local/lib
-
-If you ever happen to want to link against installed libraries
-in a given directory, LIBDIR, you must either use libtool, and
-specify the full pathname of the library, or use the `-LLIBDIR'
-flag during linking and do at least one of the following:
-   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable during execution
-   - add LIBDIR to the `LD_RUN_PATH' environment variable during linking
-   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
-   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
-
-See any operating system documentation about shared libraries for
-more information, such as the ld(1) and ld.so(8) manual pages.  
-
-
 ####SQLite3:
 Tested version: 3.8.8.3  
 SQLite site for more info SQLite database engine: <https://www.sqlite.org>  
@@ -198,7 +180,7 @@ Get the file:
 To unpack:  
 `$ tar -xf sqlite-autoconf-3080803.tar.gz`
 
-To build and install as system shared library:  
+To build and install as a system shared library:  
 `$ cd sqlite-autoconf-3080803`  
 `$ ./configure`  
 `$ make`  
@@ -215,18 +197,16 @@ Get the file from:
 To unzip:  
 `$ unzip sqlite-amalgamation-3080803.zip -d sqlite-3.8.8.3`
 
-This will provide files needed for inclusion into the source code for Quadlog.
-Contents of $HOME/dev/libraries/sqlite-amalgamation-3080803/
+This will provide files needed for inclusion into the source code for QuadlogSCADA.
+Contents of $HOME/dev/libraries/sqlite-amalgamation-3080803/ will be the following:
 
 >	shell.c  
 >	sqlite3.c  
 >	sqlite3ext.h  
 >	sqlite3.h  
 
----
 
 ##Compile QuadlogSCADA:
-
 To compile the source code of QuadlogSCADA, ensure all source files exist and are the latest.
 All source files reside in the parent directory HOME/dev/quadlog.
 
@@ -235,6 +215,4 @@ Go into this directory to compile.
 `$ make`  
 
 
->	Fin du document pour installation de QuadlogSCADA
-
----
+###Fin du document pour installation de QuadlogSCADA
