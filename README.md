@@ -1,9 +1,6 @@
 #QuadlogSCADA
 SCADA system with inbuilt HTTP web server and Modbus protocol communications.
 
-##News:
-Friday 29 May 2015: source files expect to be pushed to GitHub in June.  
-
 ##Overview:
 QuadlogSCADA is in many respects a functional SCADA system in that, when properly configured, is able to perform Supervisory Control function for processes as well as Data Acquisition from connected process equipment.
 
