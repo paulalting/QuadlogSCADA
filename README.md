@@ -92,17 +92,21 @@ On completion, check the following libraries are available in the following dire
 `/usr/include`  
 `/usr/local/include`  
 
+First, create a directory to store downloaded library tar files.
+For example:
+`mkdir Downloads`
+`cd Downloads`
 
 ####Modbus:
-Tested Version: 3.1.1  
-Download Modbus library from:<http://libmodbus.org/>  
+Tested Version: 3.1.2  
+Download site:<http://libmodbus.org/>  
 GitHub site: <https://github.com/stephane/libmodbus>  
-Save the library to directory $HOME/dev/libraries
 
 Then:  
-`$ tar -xf libmodbus-3.1.1.tar.gz`
+`wget http://libmodbus.org/releases/libmodbus-3.1.2.tar.gz`
+`$ tar -xf libmodbus-3.1.2.tar.gz`
 
-Go into the new directory libmodbus-3.1.1 and  
+Go into the new directory libmodbus-3.1.2 and  
 `$ ./configure`
 
 On the chance there is no configure script then generate one by running:  
@@ -128,21 +132,21 @@ This should result in a message tail similar to:
         cflags:                 -g -O2
         ldflags:                
 
-Then to make:  
+To make:  
 `$ make`
 
-To install:  
+To make and install:  
 `$ sudo make install`  
 
 ####libmicrohttpd:
-Tested version: 0.9.34  
-Download libmicrohttpd library from site: <https://www.gnu.org/software/libmicrohttpd/>  
-Save the library to directory $HOME/dev/libraries
+Tested version: 0.9.49  
+Download site: <https://www.gnu.org/software/libmicrohttpd/>  
 
 Then  
-`$ tar -xf libmicrohttpd-0.9.34.tar.gz`
+`wget http://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.49.tar.gz`
+`$ tar -xf libmicrohttpd-0.9.49.tar.gz`
 
-Go into the new directory libmicrohttpd-0.9.34 and  
+Go into the new directory libmicrohttpd-0.9.49 and  
 `$ ./configure`
 
 This should result in a message similar to:
@@ -170,20 +174,19 @@ To install:
 `$ sudo make install`
 
 ####SQLite3:
-Tested version: 3.8.8.3  
+Tested version: 3.12.2  
 SQLite site for more info SQLite database engine: <https://www.sqlite.org>  
 Set location to $HOME/dev/libraries
 
 Get the file:  
-`$ wget http://www.sqlite.org/2015/sqlite-autoconf-3080803.tar.gz`
+`$ wget https://www.sqlite.org/2016/sqlite-autoconf-3120200.tar.gz`
 
 To unpack:  
-`$ tar -xf sqlite-autoconf-3080803.tar.gz`
+`$ tar -xf sqlite-autoconf-3120200.tar.gz`
 
 To build and install as a system shared library:  
-`$ cd sqlite-autoconf-3080803`  
+`$ cd sqlite-autoconf-3120200`  
 `$ ./configure`  
-`$ make`  
 `$ sudo make install`
 
 To install as a source for inclusion into a project:
