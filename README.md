@@ -69,11 +69,11 @@ Next, ensure your system has the necessary tools to build the required libraries
 The tools required are 'build essentials', 'automake' and 'libtool'.
 
 Install build essential tools:  
-`$ sudo apt-get install build-essential`  
+`sudo apt-get install build-essential`  
 
 Next, install automake and libtool:  
-`$ sudo apt-get install automake`  
-`$ sudo apt-get install libtool`
+`sudo apt-get install automake`  
+`sudo apt-get install libtool`
 
 Next install the first of the helper libraries, ncurses development files:
 
@@ -81,7 +81,7 @@ Ncurses is a toolkit for developing "GUI-like" application software that runs un
 To use it in QuadlogSCADA, you also need the header files which is supplied by the libncurses5-dev package.
 
 To install:  
-`$ sudo apt-get install libncurses5-dev`
+`sudo apt-get install libncurses5-dev`
 
 Next the three main libraries used by QuadlogSCADA need to be installed.  
 Progress through the following steps to download, configure and install.
@@ -94,6 +94,30 @@ For example:
 `mkdir Downloads`
 `cd Downloads`
 
+####Zlog
+Tested Version:
+Download Site: <https://github.com/HardySimpson/zlog/archive/latest-stable.tar.gz>
+
+Then:
+`wget https://github.com/HardySimpson/zlog/archive/latest-stable.tar.gz`
+`tar -xf latest-stable.tar.gz`
+`cd zlog-latest-stable`
+`make`
+`sudo make install`
+
+####Jansson
+Tested Version: 2.7
+Download Site: <http://www.digip.org/jansson/releases/jansson-2.7.tar.gz>
+
+Then:
+`wget http://www.digip.org/jansson/releases/jansson-2.7.tar.gz`
+`tar -xf jansson-2.7.tar.gz`
+`cd jansson-2.7`
+`./configure`
+`make`
+`sudo make install`
+
+
 ####Modbus:
 Tested Version: 3.1.2  
 Download site:<http://libmodbus.org/>  
@@ -102,8 +126,7 @@ GitHub site: <https://github.com/stephane/libmodbus>
 Then:  
 `wget http://libmodbus.org/releases/libmodbus-3.1.2.tar.gz`
 `$ tar -xf libmodbus-3.1.2.tar.gz`
-
-Go into the new directory libmodbus-3.1.2 and  
+`cd libmodbus-3.1.2`
 `$ ./configure`
 
 On the chance there is no configure script then generate one by running:  
@@ -114,25 +137,8 @@ If the autogen.sh file is not set as executable, then tell it by:
 
 This should complete with a message saying you can now run `./configure`
 
-Execute  
+Then:  
 `$ ./configure`
-
-This should result in a message tail similar to:
-
-        libmodbus 3.1.1
-        ===============
-        prefix:                 /usr/local
-        sysconfdir:             ${prefix}/etc
-        libdir:                 ${exec_prefix}/lib
-        includedir:             ${prefix}/include
-        compiler:               gcc -std=gnu99
-        cflags:                 -g -O2
-        ldflags:                
-
-To make:  
-`$ make`
-
-To make and install:  
 `$ sudo make install`  
 
 ####libmicrohttpd:
@@ -142,32 +148,8 @@ Download site: <https://www.gnu.org/software/libmicrohttpd/>
 Then  
 `wget http://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.49.tar.gz`
 `$ tar -xf libmicrohttpd-0.9.49.tar.gz`
-
-Go into the new directory libmicrohttpd-0.9.49 and  
+`cd libmicrohttpd-0.9.49`
 `$ ./configure`
-
-This should result in a message similar to:
-
-        configure:          Configuration Summary:
-        Operating System:  linux-gnueabihf
-        libgcrypt:         no, HTTPS will not be built
-        libcurl (testing): no, many unit tests will not run
-        Target directory:  /usr/local
-        Messages:          yes
-        Basic auth.:       yes
-        Digest auth.:      yes
-        Postproc:          yes
-        HTTPS support:     no (lacking libgcrypt or libgnutls)
-        epoll support:     yes
-        libmicrospdy:      no
-        spdylay (testing): no
-        configure:
-        License:           LGPL or eCos
-
-Then to make:  
-`$ make`
-
-To install:  
 `$ sudo make install`
 
 ####SQLite3:
