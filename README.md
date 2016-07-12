@@ -78,7 +78,7 @@ Next, install automake and libtool:
 Next install the first of the helper libraries, ncurses development files:
 
 Ncurses is a toolkit for developing "GUI-like" application software that runs under a terminal emulator and is installed as part of the Debian distribution.  
-To use it in QuadlogSCADA, you also need the header files which is supplied by the libncurses5-dev package.
+To use it in QuadlogSCADA, you also need the header file which is supplied by the libncurses5-dev package.
 
 To install:  
 `sudo apt-get install libncurses5-dev`
@@ -91,54 +91,54 @@ On completion, check the following libraries are available in the following dire
 
 First, create a directory to store downloaded library tar files.
 For example:
-`mkdir Downloads`
-`cd Downloads`
+`mkdir Downloads`  
+`cd Downloads`  
 
 ####Zlog
 Tested Version:
 Download Site: <https://github.com/HardySimpson/zlog/archive/latest-stable.tar.gz>
 
 Then:
-`wget https://github.com/HardySimpson/zlog/archive/latest-stable.tar.gz`
-`tar -xf latest-stable.tar.gz`
-`cd zlog-latest-stable`
-`make`
-`sudo make install`
+`wget https://github.com/HardySimpson/zlog/archive/latest-stable.tar.gz`  
+`tar -xf latest-stable.tar.gz`  
+`cd zlog-latest-stable`  
+`make`  
+`sudo make install`  
 
 ####Jansson
 Tested Version: 2.7
 Download Site: <http://www.digip.org/jansson/releases/jansson-2.7.tar.gz>
 
 Then:
-`wget http://www.digip.org/jansson/releases/jansson-2.7.tar.gz`
-`tar -xf jansson-2.7.tar.gz`
-`cd jansson-2.7`
-`./configure`
-`make`
-`sudo make install`
+`wget http://www.digip.org/jansson/releases/jansson-2.7.tar.gz`  
+`tar -xf jansson-2.7.tar.gz`  
+`cd jansson-2.7`  
+`./configure`  
+`make`  
+`sudo make install`  
 
 
 ####Modbus:
-Tested Version: 3.1.2  
+Tested Version: 3.1.4  
 Download site:<http://libmodbus.org/>  
 GitHub site: <https://github.com/stephane/libmodbus>  
 
 Then:  
-`wget http://libmodbus.org/releases/libmodbus-3.1.2.tar.gz`
-`$ tar -xf libmodbus-3.1.2.tar.gz`
-`cd libmodbus-3.1.2`
-`$ ./configure`
+`wget http://libmodbus.org/releases/libmodbus-3.1.4.tar.gz`  
+`$ tar -xf libmodbus-3.1.4.tar.gz`  
+`cd libmodbus-3.1.4`  
+`$ ./configure`  
 
 On the chance there is no configure script then generate one by running:  
-`$ ./autogen.sh.`
+`$ ./autogen.sh.`  
 
 If the autogen.sh file is not set as executable, then tell it by:  
-`$ sh ./autogen.sh`
+`$ sh ./autogen.sh`  
 
 This should complete with a message saying you can now run `./configure`
 
 Then:  
-`$ ./configure`
+`$ ./configure`  
 `$ sudo make install`  
 
 ####libmicrohttpd:
@@ -146,46 +146,26 @@ Tested version: 0.9.49
 Download site: <https://www.gnu.org/software/libmicrohttpd/>  
 
 Then  
-`wget http://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.49.tar.gz`
-`$ tar -xf libmicrohttpd-0.9.49.tar.gz`
-`cd libmicrohttpd-0.9.49`
-`$ ./configure`
-`$ sudo make install`
+`wget http://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.49.tar.gz`  
+`$ tar -xf libmicrohttpd-0.9.49.tar.gz`  
+`cd libmicrohttpd-0.9.49`  
+`$ ./configure`  
+`$ sudo make install`  
 
 ####SQLite3:
-Tested version: 3.12.2  
+Tested version: 3.13.0 
 SQLite site for more info SQLite database engine: <https://www.sqlite.org>  
-Set location to $HOME/dev/libraries
 
 Get the file:  
-`$ wget https://www.sqlite.org/2016/sqlite-autoconf-3120200.tar.gz`
+`$ wget https://www.sqlite.org/2016/sqlite-autoconf-3130000.tar.gz`  
 
 To unpack:  
-`$ tar -xf sqlite-autoconf-3120200.tar.gz`
+`$ tar -xf sqlite-autoconf-3130000.tar.gz`  
 
 To build and install as a system shared library:  
-`$ cd sqlite-autoconf-3120200`  
+`$ cd sqlite-autoconf-3130000`  
 `$ ./configure`  
-`$ sudo make install`
-
-To install as a source for inclusion into a project:
-
-First install unzip if not already installed:  
-`$ sudo apt-get install unzip`
-
-Get the file from:  
-`$ wget http://www.sqlite.org/2015/sqlite-amalgamation-3080803.zip`
-
-To unzip:  
-`$ unzip sqlite-amalgamation-3080803.zip -d sqlite-3.8.8.3`
-
-This will provide files needed for inclusion into the source code for QuadlogSCADA.
-Contents of $HOME/dev/libraries/sqlite-amalgamation-3080803/ will be the following:
-
->	shell.c  
->	sqlite3.c  
->	sqlite3ext.h  
->	sqlite3.h  
+`$ sudo make install`  
 
 
 ##Compile QuadlogSCADA:
