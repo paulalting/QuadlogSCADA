@@ -172,6 +172,9 @@ To build and install as a system shared library:
 To compile the source code of QuadlogSCADA, ensure all source files exist and are the latest.
 All source files reside in the parent directory HOME/dev/quadlog.
 
+After installation of the above libraries, we need to reload by following command:
+`$sudo ldconfig`  
+
 Go into this directory to compile.  
 `$ make clean`  
 `$ make`  
