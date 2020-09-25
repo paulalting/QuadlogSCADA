@@ -2,7 +2,7 @@ QuadlogSCADA
 ------------
 
   QuadlogSCADA is an application framework for use in small automation or control systems. 
-  It allows users to develop elegant SCADA systems based on Python together with JavaScript 
+  It allows users to develop elegant SCADA systems based on Python together with HTML5 and JavaScript 
   and other web technologies of the users choice. It is lightweight and capable of operating 
   on systems with minimal hardware resources.
   
@@ -14,23 +14,24 @@ Features
 --------
 
  - Communicates via Modbus protocol with devices like PLCs or Arduino.
- - Provides a modern and flexible web-based user interface framework.
+ - Provides a modern and flexible web-based user interface framework using HTML5/JavaScript.
  - Ability to monitor and log sensor data as well as alarm conditions.
  - Able to accept user input such as set-points and on/off controls.
 
 ### Simple
 
-- QuadlogSCADA is an application framework, built upon Python 3. User configuration is largely separated from base code.
+- QuadlogSCADA is an application framework, built upon Python 3 (3.6). 
+- User configuration is largely separated from base code.
   
 #### Centralised or Distributed
 
-- QuadlogSCADA has two main components that share data through a central data-store, Redis. 
+- QuadlogSCADA has two main components that share data through a central Redis-Server, the IOServer communicating with PLCs and the Webserver for web clients.
 - This allows the two components to exist on a single system or to exist over multiple network connected systems.
   
 #### Efficient
 
 - Quadlog code makes use of asynchronous co-routines for non-blocking execution. 
-- Applications are set to operate on system boot via systemd service files.
+- Applications can be set to operate on system boot via systemd service files.
   
 #### Extensible
 
@@ -48,7 +49,7 @@ Features
 Installation
 ------------
 
-This is still a preliminary project with only documentation as of September 25 2020.
+This is still a preliminary project set up with only the documentation uploaded as of September 25 2020.
 
 Installation instructions can be found at http://quadlogscada.paulalting.com
 
